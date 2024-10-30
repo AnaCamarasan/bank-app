@@ -34,11 +34,19 @@ public class BankAccount {
     }
 
     public void deposit (double amount) {
+        if (amount < 0){
+            System.out.println("Cannot deposit negative ammount");
+            return;
+        }
         accountBalance += amount;
         System.out.println("Deposit successful.");
     }
 
     public void withdraw (double amount) {
+        if (amount < 0){
+            System.out.println("Cannot withdraw negative ammount");
+            return;
+        }
         if (accountBalance - amount < minimumBalance) {
             System.out.println("Withdrawal failed. Insufficient funds.");
         } else {
