@@ -7,10 +7,12 @@ public class CurrentAccount extends BankAccount{
         this.maximumWithdrawalAmount = maximumWithdrawalAmount;
     }
 
-    // Constructor with default max withdrawal amount
-    public CurrentAccount(double accountBalance, double minimumBalance, String accountHolderName) {
-        super(accountBalance, minimumBalance, accountHolderName);
-        this.maximumWithdrawalAmount = 200;
+    public double getMaximumWithdrawalAmount() {
+        return maximumWithdrawalAmount;
+    }
+
+    public void setMaximumWithdrawalAmount(double maximumWithdrawalAmount) {
+        this.maximumWithdrawalAmount = maximumWithdrawalAmount;
     }
 
     @Override
