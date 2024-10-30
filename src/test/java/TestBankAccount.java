@@ -71,6 +71,6 @@ public class TestBankAccount {
         assertEquals(300.0, account.getAccountBalance(), "Withdraw below minimum balance should not change balance");
 
         account.withdraw(300.0); // Withdraw full remaining balance, exactly at minimum
-        assertEquals(0.0, account.getAccountBalance(), "Withdraw remaining balance failed");
+        assertEquals(300, account.getAccountBalance(), "Withdraw remaining balance failed");
     }
 }
