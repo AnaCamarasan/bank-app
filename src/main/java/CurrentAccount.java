@@ -14,5 +14,11 @@ public class CurrentAccount extends BankAccount{
     }
 
     @Override
-    public void wit
+    public void withdraw(double amount) {
+        if (amount > maximumWithdrawalAmount) {
+            System.out.println("Withdrawal failed. Cannot withdraw more than £" + maximumWithdrawalAmount);
+        } else {
+            super.withdraw(amount);
+        }
+    }
 }
