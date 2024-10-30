@@ -55,4 +55,17 @@ public class TestSavingsAccount {
         System.out.println(acc.toString());
     }
 
+    @Test
+    public void testEstimateYearlyCompoundInterest() {
+
+        acc.setAccountBalance(100);
+        acc.setInterestRate(3.0);
+        // 0.002 Error margin
+        assertEquals(106.09, acc.estimateYearlyCompoundInterest(2), 0.002);
+
+        acc.setAccountBalance(100);
+        acc.setInterestRate(3.0);
+        assertEquals(100, acc.estimateYearlyCompoundInterest(0), 0.002);
+    }
+
 }

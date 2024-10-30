@@ -16,6 +16,10 @@ public class SavingsAccount extends BankAccount {
         this.interestRate = interestRate;
     }
 
+    public double estimateYearlyCompoundInterest(int years) {
+        return  this.getAccountBalance() * Math.pow(1 + (this.getInterestRate() / 100.00), years);
+    }
+
     @Override
     public String toString() {
         return "SavingsAccount{" +
