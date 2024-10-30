@@ -12,4 +12,13 @@ public class CurrentAccount extends BankAccount{
         super(accountBalance, minimumBalance, accountHolderName);
         this.maximumWithdrawalAmount = 200;
     }
+
+    @Override
+    public void withdraw(double amount) {
+        if (amount > maximumWithdrawalAmount) {
+            System.out.println("Withdrawal failed. Cannot withdraw more than £" + maximumWithdrawalAmount);
+        } else {
+            super.withdraw(amount);
+        }
+    }
 }
