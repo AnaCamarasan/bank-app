@@ -16,4 +16,13 @@ public class SavingsAccount extends BankAccount {
         this.interestRate = interestRate;
     }
 
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "interestRate=" + interestRate +
+                ", accountBalance=" + this.getAccountBalance() +
+                ", minimumBalance=" + this.getMinimumBalance() +
+                ", accountHolderName=" + this.getAccountHolderName() +
+                '}';
+    }
 }

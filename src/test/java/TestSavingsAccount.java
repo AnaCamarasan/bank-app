@@ -36,16 +36,27 @@ public class TestSavingsAccount {
 
     @Test
     public void testGetANDSetInterestRate() {
-        double r = 7.11;
         SavingsAccount acc = new SavingsAccount(
                 1999.99,
                 100,
                 "Hott Toddy",
                 2.56
         );
+        double r = 7.11;
         assertEquals(2.56, acc.getInterestRate());
         acc.setInterestRate(r);
         assertEquals(r, acc.getInterestRate());
+    }
+
+    @Test
+    public void testToString() {
+        SavingsAccount acc = new SavingsAccount(
+                1999.99,
+                100,
+                "Hott Toddy",
+                2.56
+        );
+        System.out.println(acc.toString());
     }
 
 }
