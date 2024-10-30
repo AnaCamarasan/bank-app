@@ -33,12 +33,12 @@ public class BankAccount {
         this.accountHolderName = accountHolderName;
     }
 
-    private void deposit (double amount) {
+    public void deposit (double amount) {
         accountBalance += amount;
         System.out.println("Deposit successful.");
     }
 
-    private void withdraw (double amount) {
+    public void withdraw (double amount) {
         if (accountBalance - amount < minimumBalance) {
             System.out.println("Withdrawal failed. Insufficient funds.");
         } else {

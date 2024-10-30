@@ -1,48 +1,76 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class TestBankAccount {
-    public static void main(String[] args) {
-        testConstructor();
-        testGetters();
-        testSetters();
-        testToString();
-        System.out.println("All tests passed.");
+
+    private BankAccount account;
+
+    @BeforeEach
+    public void setUp() {
+        account = new BankAccount(500.0, 100.0, "Alice");
     }
 
     // Test constructor
-    public static void testConstructor() {
-        BankAccount account = new BankAccount(500.0, 100.0, "Alice");
-        
-        assert account.getAccountBalance() == 500.0 : "Constructor - account balance incorrect";
-        assert account.getMinimumBalance() == 100.0 : "Constructor - minimum balance incorrect";
-        assert account.getAccountHolderName().equals("Alice") : "Constructor - account holder name incorrect";
+    @Test
+    public void testConstructor() {
+        assertEquals(500.0, account.getAccountBalance(), "Constructor - account balance incorrect");
+        assertEquals(100.0, account.getMinimumBalance(), "Constructor - minimum balance incorrect");
+        assertEquals("Alice", account.getAccountHolderName(), "Constructor - account holder name incorrect");
     }
 
     // Test getters
-    public static void testGetters() {
-        BankAccount account = new BankAccount(500.0, 100.0, "Alice");
-        
-        assert account.getAccountBalance() == 500.0 : "Getter - account balance incorrect";
-        assert account.getMinimumBalance() == 100.0 : "Getter - minimum balance incorrect";
-        assert account.getAccountHolderName().equals("Alice") : "Getter - account holder name incorrect";
+    @Test
+    public void testGetters() {
+        assertEquals(500.0, account.getAccountBalance(), "Getter - account balance incorrect");
+        assertEquals(100.0, account.getMinimumBalance(), "Getter - minimum balance incorrect");
+        assertEquals("Alice", account.getAccountHolderName(), "Getter - account holder name incorrect");
     }
 
     // Test setters
-    public static void testSetters() {
-        BankAccount account = new BankAccount(500.0, 100.0, "Alice");
-        
+    @Test
+    public void testSetters() {
         account.setAccountBalance(600.0);
-        assert account.getAccountBalance() == 600.0 : "Setter - account balance incorrect";
-        
+        assertEquals(600.0, account.getAccountBalance(), "Setter - account balance incorrect");
+
         account.setMinimumBalance(150.0);
-        assert account.getMinimumBalance() == 150.0 : "Setter - minimum balance incorrect";
-        
+        assertEquals(150.0, account.getMinimumBalance(), "Setter - minimum balance incorrect");
+
         account.setAccountHolderName("Bob");
-        assert account.getAccountHolderName().equals("Bob") : "Setter - account holder name incorrect";
+        assertEquals("Bob", account.getAccountHolderName(), "Setter - account holder name incorrect");
     }
 
-    public static void testToString() {
-        BankAccount account = new BankAccount(500.0, 100.0, "Alice");
-        
+    // Test toString method
+    @Test
+    public void testToString() {
         String expected = "BankAccount{accountBalance=500.0, minimumBalance=100.0, accountHolderName='Alice'}";
-        assert account.toString().equals(expected) : "toString method incorrect";
+        assertEquals(expected, account.toString(), "toString method incorrect");
+    }
+
+    // Test deposit method
+    @Test
+    public void testDeposit() {
+        account.deposit(200.0);
+        assertEquals(700.0, account.getAccountBalance(), "Deposit method failed");
+
+        account.deposit(0.0); // Deposit zero amount
+        assertEquals(700.0, account.getAccountBalance(), "Deposit zero amount failed");
+
+        account.deposit(-100.0); // Deposit negative amount (Assuming deposit should allow only positive values)
+        assertEquals(700.0, account.getAccountBalance(), "Deposit negative amount should not change balance");
+    }
+
+    // Test withdraw method
+    @Test
+    public void testWithdraw() {
+        account.withdraw(200.0);
+        assertEquals(300.0, account.getAccountBalance(), "Withdraw method failed");
+
+        account.withdraw(250.0); // Attempt to withdraw below minimum balance
+        assertEquals(300.0, account.getAccountBalance(), "Withdraw below minimum balance should not change balance");
+
+        account.withdraw(300.0); // Withdraw full remaining balance, exactly at minimum
+        assertEquals(0.0, account.getAccountBalance(), "Withdraw remaining balance failed");
     }
 }
